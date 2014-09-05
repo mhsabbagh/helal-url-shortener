@@ -1,0 +1,11 @@
+[Desktop Entry]
+Type=Application
+Encoding=UTF-8
+Name=Helal URL Shortener
+Name[ar]= مقصّر روابط هلال
+Comment=Shorten you web URLs easily using a simple GUI.
+Comment[ar]= قصّر روابطك بسهولة باستخدام واجهة رسومية بسيطة.
+Categories=GTK;GNOME;Utility;
+Exec=helal-url-shortener
+Icon=/usr/share/pixmaps/helal-url-shortener.png
+Terminal=false

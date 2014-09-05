@@ -1,0 +1,70 @@
+#!/usr/bin/python
+# -*- coding: utf-8 -*-
+
+## import some stuff.. bring some tea with you.
+from gi.repository import Gtk
+import os, locale, gettext, requests
+
+## locale.
+locale.setlocale(locale.LC_ALL, '')
+gettext.bindtextdomain('helal-url-shortener', '/usr/share/locale')
+gettext.textdomain('helal-url-shortener')
+_ = gettext.gettext
+gettext.install("helal-url-shortener", "/usr/share/locale")
+
+# import glade file.
+builder = Gtk.Builder()
+builder.set_translation_domain('helal-url-shortener')
+builder.add_from_file("/usr/lib/helal-url-shortener/helal-url-shortener.glade")
+
+# import entry1
+entry = builder.get_object("entry1")
+
+# import entry3
+entry3 = builder.get_object("entry3")
+
+
+# importing windows and some other stuff.
+window = builder.get_object("window1")
+window2 = builder.get_object("window2")
+finalurl = builder.get_object("label3")
+aboutdialog = builder.get_object("aboutdialog1")
+
+## define actions here..
+class Handler:
+    def WhenClosed(self, *args):
+        Gtk.main_quit(*args)
+
+## What really happens when you click on the first Shorten button.
+    def shorten1(self, button):
+         userurl = entry.get_text()
+         url = requests.get("http://is.gd/create.php?format=simple&url=%s"%(userurl)).text
+         finalurl.set_text(url)
+         window2.show()
+
+## What really happens when you click on the second Shorten button.
+    def shorten2(self, button):
+         userurl2 = entry3.get_text()
+         url2 = requests.get("http://api.adf.ly/api.php?key=a0f142bd2bbd0aa3a13eb7e7f9bab015&uid=5276602&advert_type=int&domain=adf.ly&url=%s"%(userurl2)).text
+         finalurl.set_text(url2)
+         window2.show()
+   
+    def hidewindow2(self, button):
+        window2.hide()
+
+    def quit(self, button):
+         Gtk.main_quit()
+
+## the about dialog.
+    def aboutstart(self, widget):
+         aboutdialog.run()
+         aboutdialog.hide()
+
+# connect the glade file objects with the handler to activate signals.
+builder.connect_signals(Handler())
+
+# and finally, showing it! give that developer a cookie.
+window.show_all()
+Gtk.main()
+
+
