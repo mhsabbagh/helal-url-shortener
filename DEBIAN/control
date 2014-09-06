@@ -6,6 +6,6 @@ Homepage: http://projects.helallinux.com/?q=helal-shortener
 Priority: standard
 Architecture: all
 Installed-Size: 30.7
-Depends: python2.7, libgtk-3-0 (>=3.10) , curl, python-requests-oauthlib
+Depends: python2.7, libgtk-3-0 (>=3.10), python-requests-oauthlib
 Description: Helal URL Shortener
  Helal URL Shortener is a simple GUI tool to shorten your web URLs easily using the is.gd service, It can shorten web URLs very fast no mattar how many URLs you want to shorten.
